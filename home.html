@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportHub Arena - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="home-page">
+
+    <!-- TOGGLE -->
+    <input type="checkbox" id="menu-toggle" hidden>
+    <input type="checkbox" id="user-toggle" hidden>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="welcome.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+                <img src="logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="fields.html">Lapangan</a>
+            <a href="reservasi.html">Reservasi</a>
+            <a href="#lokasi">Lokasi</a>
+            <a href="#promo">Promo</a>
+        </div>
+
+        <div class="nav-actions">
+
+            <!-- USER MENU -->
+            <label class="user-menu" for="user-toggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <span class="user-name">Guest</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="#">
+                        <i class="fas fa-user-circle"></i>
+                        Profil Saya
+                    </a>
+                    <a href="reservasi.html">
+                        <i class="fas fa-calendar-check"></i>
+                        Reservasi Saya
+                    </a>
+                    <a href="welcome.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </label>
+
+            <!-- HAMBURGER -->
+            <label class="hamburger" for="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </label>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <a href="home.html">Home</a>
+        <a href="fields.html">Lapangan</a>
+        <a href="reservasi.html">Reservasi</a>
+        <a href="#lokasi">Lokasi</a>
+        <a href="#promo">Promo</a>
+        <a href="welcome.html">Logout</a>
+    </div>
+
+    <!-- MAIN -->
+    <main class="home-main">
+
+        <!-- HERO -->
+        <section class="home-hero">
+            <div class="home-hero-img-wrap">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80"
+                    class="home-hero-img">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&q=80" class="home-hero-img">
+                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1200&q=80"
+                    class="home-hero-img">
+                <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=1200&q=80"
+                    class="home-hero-img">
+                <div class="home-hero-overlay"></div>
+                <div class="home-hero-text">
+                    <span class="badge-label">
+                        Arena Highlights
+                    </span>
+                    <h1>
+                        Tingkatkan Permainan
+                        <br>
+                        Di Arena Terbaik Medan
+                    </h1>
+                    <p>
+                        Rumput profesional, pencahayaan intensitas tinggi,
+                        dan komunitas yang Anda butuhkan untuk menang.
+                    </p>
+
+                    <a href="reservasi.html" class="btn-primary" style="display:inline-flex;margin-top:16px;">
+
+                        <i class="fas fa-calendar-check"></i>
+                        Booking Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <!-- WEATHER -->
+            <div class="weather-widget">
+                <div class="weather-top">
+                    <div>
+                        <p class="weather-label">CUACA HARI INI</p>
+                        <h3>Medan, ID</h3>
+                    </div>
+
+                    <i class="fas fa-cloud-sun weather-icon"></i>
+                </div>
+
+                <div class="weather-temp">
+                    <span class="temp-big">30°</span>
+                    <span class="temp-unit">C</span>
+
+                    <p>Berawan • Maks 32°</p>
+                </div>
+
+                <div class="weather-note">
+                    💡 Cuaca bagus untuk Futsal hari ini.
+                    Lapangan outdoor dalam kondisi kering.
+                </div>
+            </div>
+
+        </section>
+
+        <!-- OLAHRAGA -->
+        <section class="section">
+            <h2 class="section-title">
+                Pilih Olahraga
+            </h2>
+
+            <div class="sport-grid">
+                <a href="fields.html?sport=futsal" class="sport-card">
+                    <div class="sport-icon">⚽</div>
+                    <h3>Futsal</h3>
+                    <p>12 Lapangan Tersedia</p>
+                </a>
+
+                <a href="fields.html?sport=basket" class="sport-card">
+                    <div class="sport-icon">🏀</div>
+                    <h3>Basket</h3>
+                    <p>4 Lapangan Tersedia</p>
+                </a>
+
+                <a href="fields.html?sport=badminton" class="sport-card">
+                    <div class="sport-icon">🏸</div>
+                    <h3>Badminton</h3>
+                    <p>18 Lapangan Tersedia</p>
+                </a>
+
+                <a href="fields.html?sport=voli" class="sport-card">
+                    <div class="sport-icon">🏐</div>
+                    <h3>Voli</h3>
+                    <p>2 Lapangan Tersedia</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- LAPANGAN -->
+        <section class="section" id="lapangan">
+            <h2 class="section-title">
+                Lapangan Terpopuler
+            </h2>
+            <p class="section-sub" style="margin-bottom:20px;">
+                Tempat terbaik di Medan berdasarkan Komunitas
+            </p>
+
+
+                <a href="fields.html" class="link-more">
+                    Lihat Semua
+                </a>
+            </div>
+
+            <div class="field-grid">
+
+                <!-- CARD 1 -->
+                <div class="field-card">
+                    <div class="field-card-img">
+                        <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=600&q=80">
+                        <span class="field-badge">
+                            Popular
+                        </span>
+                        <span class="field-rating">
+                            ⭐ 4.9
+                        </span>
+                        <span class="field-status status-available">
+                            🟢 Tersedia
+                        </span>
+                    </div>
+
+                    <div class="field-card-body">
+                        <h4>Glow Arena Medan</h4>
+                        <p class="field-sport">
+                            <i class="fas fa-running"></i>
+                            Futsal
+                        </p>
+
+                        <p class="field-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Kec. Medan Baru, Medan
+                        </p>
+
+                        <div class="field-card-footer">
+                            <div class="field-price">
+                                <strong>Rp 120.000</strong>
+                                <span>/jam</span>
+                            </div>
+
+                            <a href="reservasi.html" class="btn-book">
+                                Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="field-card">
+                    <div class="field-card-img">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80">
+                        <span class="field-badge">
+                            Best Choice
+                        </span>
+                        <span class="field-rating">
+                            ⭐ 4.8
+                        </span>
+                        <span class="field-status status-available">
+                            🟢 Tersedia
+                        </span>
+                    </div>
+
+                    <div class="field-card-body">
+                        <h4>Hoops Central Pro</h4>
+                        <p class="field-sport">
+                            <i class="fas fa-running"></i>
+                            Basket
+                        </p>
+                        <p class="field-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Kec. Medan Kota, Medan
+                        </p>
+
+                        <div class="field-card-footer">
+                            <div class="field-price">
+                                <strong>Rp 85.000</strong>
+                                <span>/jam</span>
+                            </div>
+
+                            <a href="reservasi.html" class="btn-book">
+                                Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="field-card">
+                    <div class="field-card-img">
+                        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&q=80">
+                        <span class="field-badge">
+                            Popular
+                        </span>
+                        <span class="field-rating">
+                            ⭐ 5.0
+                        </span>
+                        <span class="field-status status-booked">
+                            🔴 Dipesan
+                        </span>
+                    </div>
+
+                    <div class="field-card-body">
+                        <h4>Smash Arena Elite</h4>
+                        <p class="field-sport">
+                            <i class="fas fa-running"></i>
+                            Badminton
+                        </p>
+                        <p class="field-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Kec. Medan Selayang, Medan
+                        </p>
+
+                        <div class="field-card-footer">
+                            <div class="field-price">
+                                <strong>Rp 50.000</strong>
+                                <span>/jam</span>
+                            </div>
+                            <button class="btn-book btn-book-disabled" disabled>
+                                Tidak Tersedia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMO -->
+        <section class="promo-banner" id="promo">
+            <div class="promo-deco"></div>
+            <div class="promo-content">
+                <span class="badge-label">
+                    Limited Offer
+                </span>
+                <h2>
+                    Student Weekend
+                    <br>
+                    <span class="text-green">
+                        30% OFF
+                    </span>
+                    Setiap Sabtu-Minggu
+                </h2>
+
+                <p>
+                    Tunjukkan kartu pelajar Anda di resepsionis
+                    untuk mendapatkan diskon.
+                </p>
+
+                <a href="reservasi.html" class="btn-primary" style="margin-top:20px;">
+
+                    <i class="fas fa-tag"></i>
+                    Klaim Voucher Sekarang
+                </a>
+            </div>
+
+            <div class="promo-card-wrap">
+                <div class="promo-card">
+                    <div class="promo-card-top">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>PROMO</span>
+                    </div>
+
+                    <div class="promo-card-info">
+                        <p>Valid Hingga</p>
+                        <strong>31 Des 2026</strong>
+                    </div>
+
+                    <div class="promo-card-code">
+                        <span>STUDENT30</span>
+                        <button>
+                            SALIN KODE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP -->
+        <section class="section" id="lokasi">
+            <h2 class="section-title">
+                Lokasi Kami
+            </h2>
+            <p class="section-sub" style="margin-bottom:20px;">
+                Temukan SportHub Arena di Medan
+            </p>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127618.07574185!2d98.62468!3d3.5952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312fce8b7a2f93%3A0xb1b9ef4a7e1fbf45!2sMedan%2C%20Kota%20Medan%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                    width="100%" height="400" style="border:0; border-radius:16px;" allowfullscreen="" loading="lazy">
+                </iframe>
+
+                <div class="map-actions">
+                    <a href="https://maps.google.com/?q=Medan,+North+Sumatra,+Indonesia" target="_blank"
+                        class="btn-primary">
+
+                        <i class="fas fa-map-marker-alt"></i>
+                        Buka di Google Maps
+                    </a>
+
+                    <div class="map-address">
+                        <i class="fas fa-map-pin"></i>
+                        <span>
+                            SportHub Arena, Medan,
+                            Sumatera Utara, Indonesia
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+
+            <div>
+                <h4>SportHub Arena</h4>
+                <p>
+                    Platform booking digital terdepan Medan<br>untuk fasilitas olahraga profesional.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">
+                    Tautan Cepat
+                </h4>
+                <a href="#">Lokasi: Medan</a>
+                <a href="#">Hubungi Kami</a>
+                <a href="#">Syarat & Ketentuan</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+
+            <div>
+                <h4 class="footer-title">
+                    Tetap Aktif
+                </h4>
+
+                <div class="footer-social">
+                    <a href="#">
+                        <button>
+                            <i class="fab fa-instagram"></i>
+                        </button>
+                    </a>
+                    <a href="#">
+                        <button>
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                    </a>
+                    <a href="#">
+                        <button>
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </a>
+                </div>
+
+                <p style="font-size:12px;margin-top:16px;color:#888;">
+                    © 2026 SportHub Arena Medan.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAB -->
+    <div class="fab-container">
+        <a class="fab-btn" href="https://wa.me/628123456789" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <span class="fab-tooltip">
+            Chat Support
+        </span>
+    </div>
+</body>
+
+</html>
