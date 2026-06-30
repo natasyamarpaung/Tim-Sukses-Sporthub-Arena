@@ -94,23 +94,28 @@
         <!-- FORM -->
         <section class="section">
             <div class="step-card">
-                <form class="reservation-form" action="success.html">
+                <form class="reservation-form" id="reservationForm">
 
                     <!-- NAMA -->
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <div class="input-icon">
+                        <div class="input-icon" id="wrapNama">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Masukkan nama lengkap" required>
+                            <input type="text" id="resNama" placeholder="Masukkan nama lengkap" required>
                         </div>
+                        <p class="field-error-msg" id="errorNama">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Nama lengkap wajib diisi.</span>
+                        </p>
                     </div>
 
                     <!-- LAPANGAN -->
                     <div class="form-group">
                         <label>Pilih Lapangan</label>
-                        <div class="input-icon">
+                        <div class="input-icon" id="wrapLapangan">
                             <i class="fas fa-map-marker-alt"></i>
-                            <select required>
+                            <select id="resLapangan" required>
+                                <option value="">— Pilih Lapangan —</option>
                                 <option>
                                     Glow Arena Medan — Rp 120.000/jam
                                 </option>
@@ -125,23 +130,32 @@
                                 </option>
                             </select>
                         </div>
+                        <p class="field-error-msg" id="errorLapangan">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Silakan pilih lapangan terlebih dahulu.</span>
+                        </p>
                     </div>
 
                     <!-- TANGGAL -->
                     <div class="form-group">
                         <label>Tanggal Reservasi</label>
-                        <div class="input-icon">
+                        <div class="input-icon" id="wrapTanggal">
                             <i class="fas fa-calendar"></i>
-                            <input type="date" required>
+                            <input type="date" id="resTanggal" required>
                         </div>
+                        <p class="field-error-msg" id="errorTanggal">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Tanggal reservasi wajib diisi.</span>
+                        </p>
                     </div>
 
                     <!-- JAM -->
                     <div class="form-group">
                         <label>Jam Booking</label>
-                        <div class="input-icon">
+                        <div class="input-icon" id="wrapJam">
                             <i class="fas fa-clock"></i>
-                            <select required>
+                            <select id="resJam" required>
+                                <option value="">— Pilih Jam —</option>
                                 <option>08:00 - 09:00</option>
                                 <option>10:00 - 11:00</option>
                                 <option>13:00 - 14:00</option>
@@ -149,20 +163,29 @@
                                 <option>19:00 - 20:00</option>
                             </select>
                         </div>
+                        <p class="field-error-msg" id="errorJam">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Silakan pilih jam booking.</span>
+                        </p>
                     </div>
 
                     <!-- PEMBAYARAN -->
                     <div class="form-group">
                         <label>Metode Pembayaran</label>
-                        <div class="input-icon">
+                        <div class="input-icon" id="wrapBayar">
                             <i class="fas fa-credit-card"></i>
-                            <select required>
+                            <select id="resBayar" required>
+                                <option value="">— Pilih Metode Pembayaran —</option>
                                 <option>Transfer Bank</option>
                                 <option>QRIS</option>
                                 <option>E-Wallet</option>
                                 <option>Bayar di Tempat</option>
                             </select>
                         </div>
+                        <p class="field-error-msg" id="errorBayar">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Silakan pilih metode pembayaran.</span>
+                        </p>
                     </div>
 
                     <!-- CATATAN -->
@@ -170,19 +193,369 @@
                         <label>Catatan Tambahan</label>
                         <div class="input-icon textarea-icon">
                             <i class="fas fa-pencil-alt"></i>
-                            <textarea rows="5" placeholder="Masukkan catatan tambahan..."></textarea>
+                            <textarea rows="5" id="resCatatan" placeholder="Masukkan catatan tambahan..."></textarea>
                         </div>
                     </div>
-            </div>
 
-            <!-- BUTTON -->
-            <div class="step-actions">
-                <button type="submit" class="btn-primary">
-                    <i class="fas fa-check-circle"></i>
-                    Konfirmasi Booking
-                </button>
-            </div>
+                    <!-- ALERT SUKSES -->
+                    <div class="alert-box alert-success" id="alertSuccess">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="alertSuccessMsg"></span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="step-actions">
+                        <button type="submit" class="btn-primary" id="btnReservasi">
+                            <i class="fas fa-check-circle" id="btnReservasiIcon"></i>
+                            <span id="btnReservasiText">Konfirmasi Booking</span>
+                        </button>
+                    </div>
             </form>
             </div>
         </section>
+
+        <section class="section">
+            <div class="step-card">
+                <div class="riwayat-header">
+                    <h2 class="riwayat-title">
+                        <i class="fas fa-list-ul"></i>
+                        Riwayat Reservasi
+                    </h2>
+                    <span class="riwayat-count" id="resCount">0 reservasi</span>
+                </div>
+
+                <div class="riwayat-table-wrap">
+                    <table class="riwayat-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Lapangan</th>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Pembayaran</th>
+                                <th>Catatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="riwayat-empty" id="resEmptyState">
+                    <i class="fas fa-calendar-times"></i>
+                    Belum ada reservasi. Silakan isi formulir di atas.
+                </p>
+            </div>
+        </section>
     </main>
+    <script>
+        /* Ambil referensi elemen form, field, dan tabel */
+        var reservationForm = document.getElementById("reservationForm");
+        var inputNama        = document.getElementById("resNama");
+        var selectLapangan   = document.getElementById("resLapangan");
+        var inputTanggal     = document.getElementById("resTanggal");
+        var selectJam        = document.getElementById("resJam");
+        var selectBayar      = document.getElementById("resBayar");
+        var inputCatatan     = document.getElementById("resCatatan");
+        var tableBody        = document.getElementById("resTableBody");
+        var resCountEl       = document.getElementById("resCount");
+        var emptyStateEl     = document.getElementById("resEmptyState");
+        var btnReservasi     = document.getElementById("btnReservasi");
+        var btnReservasiIcon = document.getElementById("btnReservasiIcon");
+        var btnReservasiText = document.getElementById("btnReservasiText");
+
+        /* Penyimpanan data reservasi menggunakan localStorage */
+        var nomorUrut = 1;
+        var editingId = null; // null = mode tambah, berisi id = mode ubah
+
+        /* Ambil seluruh data reservasi dari localStorage */
+        function getData() {
+            var raw = localStorage.getItem("sporthub_reservasi");
+            return raw ? JSON.parse(raw) : [];
+        }
+
+        /* Simpan array data reservasi ke localStorage */
+        function saveData(data) {
+            localStorage.setItem("sporthub_reservasi", JSON.stringify(data));
+        }
+
+        /* Event handler saat form disubmit */
+        reservationForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // mencegah reload halaman
+
+            clearAllErrors();
+
+            /* Tangkap data yang dimasukkan pada form */
+            var nama     = inputNama.value.trim();
+            var lapangan = selectLapangan.value;
+            var tanggal  = inputTanggal.value;
+            var jam      = selectJam.value;
+            var bayar    = selectBayar.value;
+            var catatan  = inputCatatan.value.trim();
+
+            var isValid = validateForm(nama, lapangan, tanggal, jam, bayar);
+
+            if (!isValid) {
+                return;
+            }
+
+            if (editingId === null) {
+                tambahReservasi(nama, lapangan, tanggal, jam, bayar, catatan);
+                tampilkanSukses("Reservasi berhasil ditambahkan!");
+            } else {
+                ubahReservasi(editingId, nama, lapangan, tanggal, jam, bayar, catatan);
+                tampilkanSukses("Perubahan reservasi berhasil disimpan!");
+                editingId = null;
+                btnReservasiIcon.className = "fas fa-check-circle";
+                btnReservasiText.textContent = "Konfirmasi Booking";
+            }
+
+            reservationForm.reset();
+        });
+
+        /* Validasi seluruh field wajib pada form */
+        function validateForm(nama, lapangan, tanggal, jam, bayar) {
+            var valid = true;
+
+            if (nama === "") {
+                showFieldError("errorNama", "resNama", "wrapNama");
+                valid = false;
+            }
+
+            if (lapangan === "") {
+                showFieldError("errorLapangan", "resLapangan", "wrapLapangan");
+                valid = false;
+            }
+
+            if (tanggal === "") {
+                showFieldError("errorTanggal", "resTanggal", "wrapTanggal");
+                valid = false;
+            }
+
+            if (jam === "") {
+                showFieldError("errorJam", "resJam", "wrapJam");
+                valid = false;
+            }
+
+            if (bayar === "") {
+                showFieldError("errorBayar", "resBayar", "wrapBayar");
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        /* Tampilkan pesan error pada satu field tertentu */
+        function showFieldError(errorId, inputId, wrapId) {
+            var errorEl = document.getElementById(errorId);
+            var inputEl = document.getElementById(inputId);
+            var wrapEl  = document.getElementById(wrapId);
+
+            errorEl.classList.add("show-error");
+            inputEl.classList.add("input-error");
+            wrapEl.classList.add("input-error");
+        }
+
+        /* Bersihkan seluruh pesan error sebelum validasi ulang */
+        function clearAllErrors() {
+            var errorList = document.querySelectorAll(".field-error-msg");
+            errorList.forEach(function(el) {
+                el.classList.remove("show-error");
+            });
+
+            var inputList = document.querySelectorAll(".input-icon");
+            inputList.forEach(function(el) {
+                el.classList.remove("input-error");
+            });
+        }
+
+        /* Tampilkan notifikasi sukses setelah submit berhasil */
+        function tampilkanSukses(pesan) {
+            var alertEl = document.getElementById("alertSuccess");
+            var msgEl   = document.getElementById("alertSuccessMsg");
+
+            msgEl.textContent = pesan;
+            alertEl.classList.add("show-alert");
+
+            alertEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+            setTimeout(function() {
+                alertEl.classList.remove("show-alert");
+            }, 2500);
+        }
+
+        /* Tambah data baru ke localStorage dan tampilkan di tabel */
+        function tambahReservasi(nama, lapangan, tanggal, jam, bayar, catatan) {
+            var data = getData();
+
+            var item = {
+                id: nomorUrut++,
+                nama: nama,
+                lapangan: lapangan,
+                tanggal: tanggal,
+                jam: jam,
+                bayar: bayar,
+                catatan: catatan
+            };
+
+            data.push(item);
+            saveData(data);
+            renderTabel();
+        }
+
+        /* Ubah data yang sudah ada di localStorage berdasarkan id */
+        function ubahReservasi(id, nama, lapangan, tanggal, jam, bayar, catatan) {
+            var data = getData();
+
+            var index = data.findIndex(function(item) {
+                return item.id === id;
+            });
+
+            if (index === -1) return;
+
+            data[index].nama     = nama;
+            data[index].lapangan = lapangan;
+            data[index].tanggal  = tanggal;
+            data[index].jam      = jam;
+            data[index].bayar    = bayar;
+            data[index].catatan  = catatan;
+
+            saveData(data);
+            renderTabel();
+
+            var tr = document.querySelector('tr[data-id="' + id + '"]');
+            if (tr) {
+                tr.classList.add("row-highlight");
+                setTimeout(function() {
+                    tr.classList.remove("row-highlight");
+                }, 1000);
+            }
+        }
+
+        /* Hapus data dari localStorage berdasarkan id, dengan konfirmasi terlebih dahulu */
+        function hapusReservasi(id) {
+            var konfirmasi = confirm("Apakah Anda yakin ingin menghapus reservasi ini?");
+            if (!konfirmasi) return;
+
+            var data = getData();
+            data = data.filter(function(item) {
+                return item.id !== id;
+            });
+
+            saveData(data);
+            renderTabel();
+        }
+
+        /* Masuk ke mode edit: isi ulang form dengan data yang dipilih */
+        function editReservasi(id) {
+            var data = getData();
+            var item = data.find(function(item) {
+                return item.id === id;
+            });
+            if (!item) return;
+
+            clearAllErrors();
+
+            inputNama.value      = item.nama;
+            selectLapangan.value = item.lapangan;
+            inputTanggal.value   = item.tanggal;
+            selectJam.value      = item.jam;
+            selectBayar.value    = item.bayar;
+            inputCatatan.value   = item.catatan;
+
+            editingId = id;
+
+            btnReservasiIcon.className = "fas fa-save";
+            btnReservasiText.textContent = "Simpan Perubahan";
+
+            reservationForm.scrollIntoView({ behavior: "smooth" });
+        }
+
+        /*
+         * Render ulang seluruh isi tabel dengan membaca data terbaru
+         * dari localStorage. Dipanggil setiap kali ada perubahan data
+         * (tambah/ubah/hapus) agar nomor urut tabel selalu konsisten
+         * dengan jumlah data yang sebenarnya tersisa.
+         */
+        function renderTabel() {
+            var data = getData();
+            tableBody.innerHTML = "";
+
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var tr = document.createElement("tr");
+                tr.setAttribute("data-id", item.id);
+
+                tr.innerHTML =
+                    "<td>" + (i + 1) + "</td>" +
+                    "<td>" + item.nama + "</td>" +
+                    "<td>" + item.lapangan + "</td>" +
+                    "<td>" + item.tanggal + "</td>" +
+                    "<td>" + item.jam + "</td>" +
+                    "<td>" + item.bayar + "</td>" +
+                    "<td>" + (item.catatan || "-") + "</td>" +
+                    "<td>" +
+                        '<button type="button" class="btn-edit-row"><i class="fas fa-pen"></i> Edit</button>' +
+                        '<button type="button" class="btn-hapus-row"><i class="fas fa-trash"></i> Hapus</button>' +
+                    "</td>";
+
+                tableBody.appendChild(tr);
+
+                var tombolEdit = tr.querySelector(".btn-edit-row");
+                tombolEdit.addEventListener("click", function() {
+                    var idTerpilih = Number(this.closest("tr").getAttribute("data-id"));
+                    editReservasi(idTerpilih);
+                });
+
+                var tombolHapus = tr.querySelector(".btn-hapus-row");
+                tombolHapus.addEventListener("click", function() {
+                    var idTerpilih = Number(this.closest("tr").getAttribute("data-id"));
+                    hapusReservasi(idTerpilih);
+                });
+            }
+
+            perbaruiTampilan();
+        }
+
+        /* Perbarui jumlah data dan tampilkan/sembunyikan pesan kosong */
+        function perbaruiTampilan() {
+            var data = getData();
+            resCountEl.textContent = data.length + " reservasi";
+
+            if (data.length === 0) {
+                emptyStateEl.style.display = "block";
+            } else {
+                emptyStateEl.style.display = "none";
+            }
+        }
+
+        /* Validasi real-time: bersihkan error saat user mulai mengetik ulang */
+        inputNama.addEventListener("input", function() {
+            if (inputNama.classList.contains("input-error")) {
+                inputNama.classList.remove("input-error");
+                document.getElementById("wrapNama").classList.remove("input-error");
+                document.getElementById("errorNama").classList.remove("show-error");
+            }
+        });
+
+        /* Jalankan saat halaman pertama kali dimuat */
+        function initHalaman() {
+            var data = getData();
+
+            /* Tentukan nomor urut berikutnya berdasarkan id terbesar yang sudah tersimpan */
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].id >= nomorUrut) {
+                    nomorUrut = data[i].id + 1;
+                }
+            }
+
+            renderTabel();
+        }
+
+        initHalaman();
+    </script>
+
+</body>
+</html>
