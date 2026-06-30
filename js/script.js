@@ -494,69 +494,96 @@ function loadNavUserName() {
     window.logout = logout;
 })();
 
-//Reservation Page
+//reservation pages
 (function () {
     if ((window.location.pathname.split('/').pop() || 'index.html') !== 'reservasi.html') return;
 
-    // Data
-    let hargaDasar = 0;
-    let surcharge = 0;
-    let diskon = 0;
+    let promoCode = '';
+    let discountRate = 0;
 
     const promoList = {
-        "STUDENT30": 0.30,
-        "HEMAT10": 0.10,
-        "ARENA50": 0.50
+        STUDENT30: 0.30,
+        HEMAT10: 0.10,
+        ARENA50: 0.50
     };
 
-    //Set harga
-    function setHarga(harga, malam = 0) {
-        hargaDasar = Number(harga) || 0;
-        surcharge = Number(malam) || 0;
-
-        document.getElementById("harga-dasar").innerText =
-            "Rp " + hargaDasar.toLocaleString("id-ID");
-
-        document.getElementById("tarif-malam").innerText =
-            "Rp " + surcharge.toLocaleString("id-ID");
-
-        hitungTotal();
+    function getPromoLabel(rate) {
+        return Math.round(rate * 100) + '%';
     }
-    
-    // Apply promo
+
+    function setPromoMessage(message, type = '') {
+        const info = document.getElementById('promo-info');
+        if (!info) return;
+        info.textContent = message;
+        info.className = type ? 'promo-info ' + type : 'promo-info';
+    }
+
+    function updateBookingTotal() {
+        const subtotal = Number(booking.fieldPrice || 0) + Number(booking.nightSurcharge || 0);
+        const discountAmount = Math.round(subtotal * discountRate);
+
+        booking.originalPrice = subtotal;
+        booking.discountRate = discountRate;
+        booking.discountAmount = discountAmount;
+        booking.promoCode = promoCode;
+        booking.totalPrice = Math.max(subtotal - discountAmount, 0);
+
+        const totalEl = document.getElementById('total-price');
+        if (totalEl) totalEl.textContent = 'Rp ' + booking.totalPrice.toLocaleString('id-ID');
+
+        const paymentTotal = document.getElementById('payment-total');
+        if (paymentTotal) paymentTotal.textContent = 'Rp ' + booking.totalPrice.toLocaleString('id-ID');
+
+        const hiddenBase = document.getElementById('harga-dasar');
+        if (hiddenBase) hiddenBase.textContent = 'Rp ' + Number(booking.fieldPrice || 0).toLocaleString('id-ID');
+
+        const hiddenNight = document.getElementById('tarif-malam');
+        if (hiddenNight) hiddenNight.textContent = 'Rp ' + Number(booking.nightSurcharge || 0).toLocaleString('id-ID');
+    }
+
+    function setHarga(harga, malam = 0) {
+        booking.fieldPrice = Number(harga) || 0;
+        booking.nightSurcharge = Number(malam) || 0;
+        updateBookingTotal();
+    }
+
+    function hitungTotal() {
+        updateBookingTotal();
+        return booking.totalPrice;
+    }
+
     function applyPromo() {
-        let kode = document.getElementById("kodePromo")
-            .value.trim()
-            .toUpperCase();
+        const input = document.getElementById('kodePromo');
+        const code = input ? input.value.trim().toUpperCase() : '';
 
-        if (promoList[kode]) {
-            diskon = promoList[kode];
-
-            document.getElementById("promo-info").innerText =
-                "Promo berhasil! Diskon " +
-                (diskon * 100) + "%";
-
-        } else {
-            diskon = 0;
-
-            document.getElementById("promo-info").innerText =
-                "Kode promo tidak valid";
+        if (!booking.fieldPrice || !booking.timeSlot) {
+            promoCode = '';
+            discountRate = 0;
+            updateBookingTotal();
+            setPromoMessage('Pilih lapangan dan slot waktu terlebih dahulu.', 'error');
+            return;
         }
 
-        hitungTotal();
-    }
-    
-    //hitung total
-    function hitungTotal() {
+        if (!code) {
+            promoCode = '';
+            discountRate = 0;
+            updateBookingTotal();
+            setPromoMessage('Kode promo dikosongkan. Diskon dihapus.', 'muted');
+            return;
+        }
 
-        let total = hargaDasar + surcharge;
+        if (!promoList[code]) {
+            promoCode = '';
+            discountRate = 0;
+            updateBookingTotal();
+            setPromoMessage('Kode promo tidak valid.', 'error');
+            return;
+        }
 
-        total = total - (total * diskon);
-
-        total = Math.round(total);
-
-        document.getElementById("total-price").innerText =
-            "Rp " + total.toLocaleString("id-ID");
+        promoCode = code;
+        discountRate = promoList[code];
+        updateBookingTotal();
+        setPromoMessage('Promo berhasil digunakan. Diskon ' + getPromoLabel(discountRate) + '.', 'success');
     }
 
     // Data Lapangan
