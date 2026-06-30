@@ -348,8 +348,8 @@
                     </div>
 
                     <div class="promo-card-code">
-                        <span>STUDENT30</span>
-                        <button>
+                        <span id="promoKode">STUDENT30</span>
+                        <button type="button" id="btnSalinPromo">
                             SALIN KODE
                         </button>
                     </div>
@@ -443,15 +443,32 @@
         </div>
     </footer>
 
-    <!-- FAB -->
-    <div class="fab-container">
-        <a class="fab-btn" href="https://wa.me/628123456789" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <span class="fab-tooltip">
-            Chat Support
-        </span>
-    </div>
+    <script>
+        /* Ambil referensi elemen kode promo dan tombol salin */
+        var btnSalinPromo = document.getElementById("btnSalinPromo");
+        var promoKodeEl   = document.getElementById("promoKode");
+
+        if (btnSalinPromo) {
+            btnSalinPromo.addEventListener("click", function() {
+                var kode = promoKodeEl.textContent.trim();
+
+                /* Salin teks kode promo ke clipboard */
+                navigator.clipboard.writeText(kode).then(function() {
+                    /* Beri feedback visual pada tombol setelah berhasil disalin */
+                    var teksAsli = btnSalinPromo.textContent;
+                    btnSalinPromo.textContent = "TERSALIN!";
+                    btnSalinPromo.classList.add("btn-copied");
+
+                    setTimeout(function() {
+                        btnSalinPromo.textContent = teksAsli;
+                        btnSalinPromo.classList.remove("btn-copied");
+                    }, 2000);
+                }).catch(function() {
+                    alert("Gagal menyalin kode. Silakan salin manual: " + kode);
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>
