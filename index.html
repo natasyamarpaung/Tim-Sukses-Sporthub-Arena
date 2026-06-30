@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportHub Arena - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="welcome-page">
+
+    <!-- Background Slideshow -->
+    <div class="bg-slideshow">
+        <div class="bg-slide active"
+            style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80');">
+        </div>
+        <div class="bg-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1920&q=80');">
+        </div>
+        <div class="bg-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1920&q=80');">
+        </div>
+        <div class="bg-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=1920&q=80');">
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="asset/logo.png" alt="Logo" width="50">
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="fields.html">Lapangan</a>
+            <a href="reservasi.html">Reservasi</a>
+            <a href="riwayat.html">Riwayat</a>
+            <a href="home.html#promo">Promo</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">
+                <i class="fas fa-moon" id="dark-icon"></i>
+            </button>
+            <a href="login.html" class="btn-signin">Sign In</a>
+            <button class="hamburger" onclick="toggleMenu()" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="fields.html">Lapangan</a>
+        <a href="reservasi.html">Reservasi</a>
+        <a href="riwayat.html">Riwayat</a>
+        <a href="home.html#promo">Promo</a>
+        <a href="login.html">Sign In</a>
+    </div>
+
+    </header>
+
+    <main>
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <span class="badge-label animate-fadein"><i class="fas fa-trophy"></i> Elite Sports Experience</span>
+
+        <h1 class="hero-title animate-slideup">
+            Welcome to <br>
+            <span class="text-green">SportHub Arena</span>
+        </h1>
+
+        <p class="hero-desc animate-slideup delay-1">
+            Dominate the game di fasilitas terbaik Medan. Dari lapangan futsal hingga arena premium, kemenangan dimulai
+            dari sini.
+        </p>
+
+        <div class="hero-buttons animate-slideup delay-2">
+            <a href="login.html" class="btn-primary">
+                <i class="fas fa-calendar-check"></i> Start Booking
+            </a>
+            <a href="home.html" class="btn-outline">
+                <i class="fas fa-clock"></i> Lihat Jadwal
+            </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats animate-fadein delay-3">
+            <div class="stat-item">
+                <i class="fas fa-futbol"></i>
+                <div>
+                    <strong>12 Lapangan</strong>
+                    <span>Futsal & Football</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <strong>24/7 Akses</strong>
+                    <span>Main Kapan Saja</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-shower"></i>
+                <div>
+                    <strong>Elite Lounge</strong>
+                    <span>Fasilitas Mewah</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-mug-hot"></i>
+                <div>
+                    <strong>Cafe Arena</strong>
+                    <span>Isi Tenaga</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticker Bar -->
+    <div class="ticker-bar">
+                <div class="ticker-content">
+            <span>TOURNAMENT: MEDAN FUTSAL CUP 2024 - DAFTAR SEKARANG</span>
+            <span class="dot">&bull;</span>
+            <span>LAPANGAN 4: TERSEDIA UNTUK BOOKING</span>
+            <span class="dot">&bull;</span>
+            <span>ARENA BARU DI JALAN SETIABUDI BULAN DEPAN</span>
+            <span class="dot">&bull;</span>
+            <span>PROMO: DISKON 20% SLOT PAGI (06:00 - 10:00)</span>
+            <span class="dot">&bull;</span>
+            <span>TOURNAMENT: MEDAN FUTSAL CUP 2024 - DAFTAR SEKARANG</span>
+            <span class="dot">&bull;</span>
+            <span>LAPANGAN 4: TERSEDIA UNTUK BOOKING</span>
+            <span class="dot">&bull;</span>
+            <span>ARENA BARU DI JALAN SETIABUDI BULAN DEPAN</span>
+            <span class="dot">&bull;</span>
+            <span>PROMO: DISKON 20% SLOT PAGI (06:00 - 10:00)</span>
+        </div>
+    </div>
+
+    </main>
+
+    <!-- FAB Support -->
+    <div class="fab-container">
+        <button class="fab-btn" title="WhatsApp Support" onclick="window.open('https://wa.me/628123456789')">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <span class="fab-tooltip">Chat Support</span>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,339 +1,140 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportHub Arena - Lapangan</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
-
 <body class="home-page">
 
-    <!-- TOGGLE -->
-    <input type="checkbox" id="menu-toggle" hidden>
-    <input type="checkbox" id="user-toggle" hidden>
-
-    <!-- NAVBAR -->
+    <header>
+    <!-- Navbar -->
     <nav class="navbar">
-
         <div class="nav-brand">
-            <a href="welcome.html"
-                style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+            <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+            <img src="asset/logo.png" alt="Logo" width="50">
 
-                <img src="logo.png" alt="Logo" width="50">
             </a>
         </div>
-
         <div class="nav-links">
             <a href="home.html">Home</a>
             <a href="fields.html" class="active">Lapangan</a>
             <a href="reservasi.html">Reservasi</a>
-            <a href="home.html#jadwal">Lokasi</a>
+            <a href="riwayat.html">Riwayat</a>
             <a href="home.html#promo">Promo</a>
         </div>
-
         <div class="nav-actions">
-
-            <!-- USER MENU -->
-            <label class="user-menu" for="user-toggle">
-                <div class="user-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <span class="user-name">
-                    Guest
-                </span>
-
+            <button class="btn-dark-toggle" onclick="toggleDark()">
+                <i class="fas fa-moon" id="dark-icon"></i>
+            </button>
+            <div class="user-menu" onclick="toggleUserMenu()">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <span class="user-name" id="nav-username">User</span>
                 <i class="fas fa-chevron-down"></i>
-                <div class="dropdown-menu">
-                    <a href="#">
-                        <i class="fas fa-user-circle"></i>
-                        Profil Saya
-                    </a>
-                    <a href="reservasi.html">
-                        <i class="fas fa-calendar-check"></i>
-                        Reservasi Saya
-                    </a>
-                    <a href="welcome.html">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
+                <div class="dropdown-menu" id="userDropdown">
+                    <a href="#"><i class="fas fa-user-circle"></i> Profil Saya</a>
+                    <a href="riwayat.html"><i class="fas fa-table"></i> Riwayat Reservasi</a>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
-            </label>
-
-            <!-- HAMBURGER -->
-            <label class="hamburger" for="menu-toggle">
+            </div>
+            <button class="hamburger" onclick="toggleMenu()" id="hamburger">
                 <i class="fas fa-bars"></i>
-            </label>
+            </button>
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobileMenu">
         <a href="home.html">Home</a>
         <a href="fields.html">Lapangan</a>
         <a href="reservasi.html">Reservasi</a>
         <a href="home.html#promo">Promo</a>
-        <a href="welcome.html">Logout</a>
+        <a href="#" onclick="logout()">Logout</a>
     </div>
+    </header>
 
-    <!-- MAIN -->
     <main class="home-main">
 
-        <!-- HEADER -->
+        <!-- Page Header -->
         <div class="page-header">
             <h1>Daftar Lapangan</h1>
-            <p>
-                Pilih lapangan favorit Anda dan mulai booking
-            </p>
+            <p>Pilih lapangan favorit Anda dan mulai booking</p>
         </div>
 
-            <!-- GRID -->
-            <div class="field-grid">
-
-                <!-- CARD 1 -->
-                <div class="field-card">
-                    <div class="field-card-img">
-                        <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=600&q=80">
-                        <span class="field-badge">
-                            Popular
-                        </span>
-                        <span class="field-rating">
-                            ⭐ 4.9
-                        </span>
-                        <span class="field-status status-available">
-                            🟢 Tersedia
-                        </span>
-                    </div>
-
-                    <div class="field-card-body">
-                        <h4>
-                            Glow Arena Medan - A
-                        </h4>
-
-                        <p class="field-sport">
-                            <i class="fas fa-running"></i>
-                            Futsal
-                        </p>
-
-                        <p class="field-location">
-
-                            <i class="fas fa-map-marker-alt"></i>
-                            Kec. Medan Baru
-                        </p>
-
-                        <div class="field-card-footer">
-                            <div class="field-price">
-                                <strong>
-                                    Rp 120.000
-                                </strong>
-                                <span>/jam</span>
-                            </div>
-
-                            <a href="reservasi.html"
-                                class="btn-book">
-                                Book
-                            </a>
-                        </div>
-                    </div>
+        <!-- Filter & Search -->
+        <section class="section">
+            <div class="filter-bar">
+                <!-- Search -->
+                <div class="filter-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari nama lapangan..." id="search-field" oninput="filterFields()">
                 </div>
 
-                <!-- CARD 2 -->
-                <div class="field-card">
-                    <div class="field-card-img">
-                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80">
-                        <span class="field-badge">
-                            Best Choice
-                        </span>
-                        <span class="field-rating">
-                            ⭐ 4.8
-                        </span>
-                        <span class="field-status status-available">
-                            🟢 Tersedia
-                        </span>
-                    </div>
-
-                    <div class="field-card-body">
-                        <h4>
-                            Hoops Central Pro
-                        </h4>
-
-                        <p class="field-sport">
-                            <i class="fas fa-running"></i>
-                            Basket
-                        </p>
-
-                        <p class="field-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Kec. Medan Kota
-                        </p>
-
-                        <div class="field-card-footer">
-                            <div class="field-price">
-                                <strong>
-                                    Rp 85.000
-                                </strong>
-                                <span>/jam</span>
-                            </div>
-
-                            <a href="reservasi.html"
-                                class="btn-book">
-                                Book
-                            </a>
-                        </div>
-                    </div>
+                <!-- Filter Kategori -->
+                <div class="filter-tabs" id="filter-tabs">
+                    <button class="filter-tab active" data-filter="semua" onclick="setFilter('semua', this)">Semua</button>
+                    <button class="filter-tab" data-filter="futsal" onclick="setFilter('futsal', this)"><svg class="sport-svg sport-futsal" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#f8fafc" stroke="#111827" stroke-width="4"/><path d="M32 15l9 7-4 11H27l-4-11 9-7z" fill="#111827"/><path d="M14 29l9-7 4 11-6 9-9-2zM50 29l-9-7-4 11 6 9 9-2zM24 54l3-21h10l3 21z" fill="#111827"/><path d="M23 22l-7-7M41 22l7-7M21 42l-7 8M43 42l7 8" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round"/></svg> Futsal</button>
+                    <button class="filter-tab" data-filter="basket" onclick="setFilter('basket', this)"><svg class="sport-svg sport-basket" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#e85d24" stroke="#111827" stroke-width="3"/><path d="M8 32h48M32 8v48M17 14c10 8 16 21 16 42M47 14c-10 8-16 21-16 42M11 42c13-8 28-8 42 0M11 22c13 8 28 8 42 0" fill="none" stroke="#111827" stroke-width="4" stroke-linecap="round"/></svg> Basket</button>
+                    <button class="filter-tab" data-filter="badminton" onclick="setFilter('badminton', this)"><svg class="sport-svg sport-badminton" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 17h28l-4 32H22z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/><path d="M18 17l4 32M25 17l1 32M32 17v32M39 17l-1 32M46 17l-4 32" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/><ellipse cx="32" cy="15" rx="14" ry="6" fill="#d9d9d9"/><path d="M20 15c2 6 22 6 24 0" fill="#c62828"/><path d="M20 14c5 3 19 3 24 0" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></svg> Badminton</button>
+                    <button class="filter-tab" data-filter="voli" onclick="setFilter('voli', this)"><svg class="sport-svg sport-voli" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#ffffff" stroke="#0b1b77" stroke-width="3"/><path d="M32 8c10 5 17 13 21 24-8-1-15-4-21-10z" fill="#ffd43b"/><path d="M11 25c5-10 13-16 25-17-6 6-11 13-14 22z" fill="#ffffff"/><path d="M53 32c0 11-6 19-15 23 3-11 3-21-1-31z" fill="#ffd43b"/><path d="M15 47c-6-8-7-17-4-25 6 8 14 13 24 15z" fill="#ffd43b"/><path d="M22 30c8 5 18 6 31 2M36 8c-8 7-13 14-14 22M37 24c4 10 4 20 1 31M11 22c6 8 14 13 24 15" fill="none" stroke="#0b1b77" stroke-width="4" stroke-linecap="round"/></svg> Voli</button>
                 </div>
 
-                <!-- CARD 3 -->
-                <div class="field-card">
-                    <div class="field-card-img">
-                        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&q=80">
-                        <span class="field-badge">
-                            Popular
-                        </span>
-                        <span class="field-rating">
-                            ⭐ 5.0
-                        </span>
-                        <span class="field-status status-booked">
-                            🔴 Dipesan
-                        </span>
-                    </div>
-
-                    <div class="field-card-body">
-                        <h4>
-                            Smash Arena Elite
-                        </h4>
-                        <p class="field-sport">
-                            <i class="fas fa-running"></i>
-                            Badminton
-                        </p>
-                        <p class="field-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Kec. Medan Selayang
-                        </p>
-
-                        <div class="field-card-footer">
-                            <div class="field-price">
-                                <strong>
-                                    Rp 50.000
-                                </strong>
-                                <span>/jam</span>
-                            </div>
-                            <button class="btn-book btn-book-disabled"
-                                disabled>
-                                Tidak Tersedia
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 4 -->
-                <div class="field-card">
-                    <div class="field-card-img">
-                        <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600&q=80">
-                        <span class="field-rating">
-                            ⭐ 4.7
-                        </span>
-                        <span class="field-status status-maintenance">
-                            🟡 Maintenance
-                        </span>
-                    </div>
-
-                    <div class="field-card-body">
-                        <h4>
-                            Spike Arena Medan
-                        </h4>
-
-                        <p class="field-sport">
-                            <i class="fas fa-running"></i>
-                            Voli
-                        </p>
-
-                        <p class="field-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Kec. Medan Helvetia
-                        </p>
-
-                        <div class="field-card-footer">
-                            <div class="field-price">
-                                <strong>
-                                    Rp 60.000
-                                </strong>
-                                <span>/jam</span>
-                            </div>
-
-                            <button class="btn-book btn-book-disabled"
-                                disabled>
-                                Maintenance
-                            </button>
-                        </div>
-                    </div>
+                <!-- Filter Status -->
+                <div class="filter-status">
+                    <select id="status-filter" onchange="filterFields()">
+                        <option value="semua">Semua Status</option>
+                        <option value="available">Tersedia</option>
+                        <option value="booked">Dipesan</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
                 </div>
             </div>
+
+            <p class="result-count" id="result-count">Menampilkan semua lapangan</p>
+
+            <div class="field-grid" id="fields-container">
+            </div>
+
+            <div class="empty-state hidden" id="empty-state">
+                <i class="fas fa-search"></i>
+                <p>Tidak ada lapangan yang ditemukan</p>
+                <button onclick="resetFilter()" class="btn-outline" style="margin-top:12px;">Reset Filter</button>
+            </div>
         </section>
+
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-grid">
             <div>
                 <h4>SportHub Arena</h4>
-                <p>
-                    Platform booking olahraga terbaik di Medan.
-                </p>
+                <p>Platform booking olahraga terbaik di Medan.</p>
             </div>
-
             <div>
-                <h4 class="footer-title">
-                    Navigasi
-                </h4>
-
-                <a href="home.html">
-                    Home
-                </a>
-                <a href="reservasi.html">
-                    Reservasi
-                </a>
+                <h4 class="footer-title">Navigasi</h4>
+                <a href="home.html">Home</a>
+                <a href="reservasi.html">Reservasi</a>
             </div>
-
             <div>
-                <h4 class="footer-title">
-                    Kontak
-                </h4>
-
-                <a href="#">
-                    WhatsApp: +62 812-3456-789
-                </a>
-                <a href="#">
-                    Email: info@sporthub.com
-                </a>
+                <h4 class="footer-title">Kontak</h4>
+                <a href="#">WhatsApp: +62 812-3456-789</a>
+                <a href="#">Email: info@sporthub.com</a>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p>
-                © 2026 SportHub Arena Medan.
-                All Rights Reserved.
-            </p>
+            <p>&copy; 2024 SportHub Arena Medan. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- FAB -->
     <div class="fab-container">
-        <a class="fab-btn"
-            href="https://wa.me/628123456789"
-            target="_blank">
-
+        <button class="fab-btn" title="WhatsApp" onclick="window.open('https://wa.me/628123456789')">
             <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <span class="fab-tooltip">
-            Chat Support
-        </span>
+        </button>
+        <span class="fab-tooltip">Chat Support</span>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

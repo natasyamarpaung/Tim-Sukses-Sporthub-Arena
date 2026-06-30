@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportHub Arena - Riwayat Reservasi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="home-page">
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+                    <img src="asset/logo.png" alt="Logo SportHub Arena" width="50">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="fields.html">Lapangan</a>
+                <a href="reservasi.html">Reservasi</a>
+                <a href="riwayat.html" class="active">Riwayat</a>
+                <a href="home.html#promo">Promo</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-dark-toggle" onclick="toggleDark()" title="Mode gelap">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </button>
+                <div class="user-menu" onclick="toggleUserMenu()">
+                    <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    <span class="user-name" id="nav-username">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="reservasi.html"><i class="fas fa-calendar-check"></i> Buat Reservasi</a>
+                        <a href="riwayat.html"><i class="fas fa-table"></i> Riwayat</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <button class="hamburger" onclick="toggleMenu()" id="hamburger" aria-label="Buka menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="home.html">Home</a>
+            <a href="fields.html">Lapangan</a>
+            <a href="reservasi.html">Reservasi</a>
+            <a href="riwayat.html">Riwayat</a>
+            <a href="home.html#promo">Promo</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </header>
+
+    <main class="home-main">
+        <section class="page-header">
+            <h1>Riwayat Reservasi</h1>
+            <p>Data reservasi dari form ditampilkan otomatis pada tabel ini.</p>
+        </section>
+
+        <section class="section data-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title" style="margin-bottom:4px;">Tabel Data Reservasi</h2>
+                    <p class="section-sub">Gunakan tombol hapus untuk mengelola data tersimpan.</p>
+                </div>
+                <a href="reservasi.html" class="btn-primary">
+                    <i class="fas fa-plus"></i> Tambah Data
+                </a>
+            </div>
+
+            <div class="table-toolbar">
+                <div class="filter-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="reservation-search" placeholder="Cari nama, lapangan, olahraga..." oninput="renderReservationTable()">
+                </div>
+                <button class="btn-outline btn-small" onclick="clearAllReservations()">
+                    <i class="fas fa-trash"></i> Hapus Semua
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Olahraga</th>
+                            <th>Lapangan</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Total</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservation-table-body"></tbody>
+                </table>
+            </div>
+
+            <div class="empty-state hidden" id="reservation-empty">
+                <i class="fas fa-table"></i>
+                <p>Belum ada data reservasi.</p>
+                <a href="reservasi.html" class="btn-primary" style="margin-top:12px;">Isi Form Reservasi</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>SportHub Arena</h4>
+                <p>Platform booking olahraga dengan halaman input, tabel data, dan interaksi JavaScript.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Navigasi</h4>
+                <a href="home.html">Home</a>
+                <a href="fields.html">Lapangan</a>
+                <a href="reservasi.html">Reservasi</a>
+            </div>
+            <div>
+                <h4 class="footer-title">Kontak</h4>
+                <a href="#">WhatsApp: +62 812-3456-789</a>
+                <a href="#">Email: info@sporthub.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SportHub Arena Medan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
