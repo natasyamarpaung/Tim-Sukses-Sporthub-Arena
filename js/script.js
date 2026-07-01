@@ -2,7 +2,7 @@
    script.js - SportHub Arena
    ======================================== */
 
-//Dark mode
+//Dark Mode
 function toggleDark() {
     document.body.classList.toggle('dark');
 
