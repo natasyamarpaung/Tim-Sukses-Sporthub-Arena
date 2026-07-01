@@ -274,7 +274,7 @@ function loadNavUserName() {
             });
         }
 
-        //pencarian lapangN
+        //pencarian lapangan
         function searchField(query) {
             if (query.length > 0) {
                 window.location.href = 'fields.html?search=' + encodeURIComponent(query);
