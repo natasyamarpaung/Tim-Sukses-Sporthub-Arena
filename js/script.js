@@ -634,6 +634,13 @@ window.logout = logout;
         let currentStep = 1;
 
         //navigasi
+        function markStepDone(step) {
+            const indicator = document.getElementById('step-indicator-' + step);
+            indicator.classList.add('done');
+            const circle = indicator.querySelector('.step-circle');
+            if (circle) circle.innerHTML = '';
+        }
+
         function goToStep(step) {
             // Validasi sebelum lanjut
             if (step > currentStep) {
@@ -651,7 +658,7 @@ window.logout = logout;
 
             // Tandai step selesai
             if (step > currentStep) {
-                document.getElementById('step-indicator-' + currentStep).classList.add('done');
+                markStepDone(currentStep);
             }
 
             currentStep = step;
@@ -834,6 +841,46 @@ window.logout = logout;
 
         //konfrim booking
         function confirmBooking() {
+            // Jika metode pembayaran QRIS, tampilkan QR code dulu untuk dipindai user
+            if (booking.paymentMethod === 'qris') {
+                showQrisModal();
+                return;
+            }
+
+            processBooking();
+        }
+
+        // ======== QRIS: Tampilkan QR Code untuk pembayaran ========
+        function showQrisModal() {
+            const amount = booking.totalPrice || 0;
+            const qrisId = 'SH' + Date.now();
+            booking._qrisPendingId = qrisId;
+
+            // Data yang di-encode ke dalam QR (simulasi payload QRIS)
+            const qrData = `SPORTHUB-QRIS|ID:${qrisId}|AMOUNT:${amount}|SPORT:${booking.sport || '-'}|FIELD:${booking.fieldName || '-'}`;
+
+            // Generate gambar QR via API publik (tanpa perlu library tambahan)
+            const qrImageUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(qrData);
+
+            document.getElementById('qrisImage').src = qrImageUrl;
+            document.getElementById('qrisAmount').textContent = 'Rp ' + amount.toLocaleString('id-ID');
+            document.getElementById('qrisBookingId').textContent = 'Ref: ' + qrisId;
+
+            const overlay = document.getElementById('qrisModalOverlay');
+            overlay.style.display = 'flex';
+        }
+
+        function closeQrisModal() {
+            document.getElementById('qrisModalOverlay').style.display = 'none';
+        }
+
+        function confirmQrisPayment() {
+            closeQrisModal();
+            processBooking();
+        }
+
+        // Proses booking asli (dipisah agar bisa dipanggil setelah scan QRIS ataupun metode lain)
+        function processBooking() {
             // Simpan ke localStorage
             const reservations = JSON.parse(localStorage.getItem('sporthub_reservations') || '[]');
             const user = JSON.parse(localStorage.getItem('sporthub_login') || '{}');
@@ -855,7 +902,7 @@ window.logout = logout;
             // Update progress semua step done
             for (let i = 1; i <= 5; i++) {
                 document.getElementById('step-indicator-' + i).classList.remove('active');
-                document.getElementById('step-indicator-' + i).classList.add('done');
+                markStepDone(i);
             }
 
             // Render detail sukses
@@ -928,11 +975,16 @@ window.applyPromo = applyPromo;
 window.applypromo = applyPromo;
 window.hitungTotal = hitungTotal;
 window.goToStep = goToStep;
+window.markStepDone = markStepDone;
 window.selectSport = selectSport;
 window.selectField = selectField;
 window.updateTimeSlots = updateTimeSlots;
 window.selectPayment = selectPayment;
 window.confirmBooking = confirmBooking;
+window.showQrisModal = showQrisModal;
+window.closeQrisModal = closeQrisModal;
+window.confirmQrisPayment = confirmQrisPayment;
+window.processBooking = processBooking;
 window.toggleUserMenu = toggleUserMenu;
 window.logout = logout;
 })();
