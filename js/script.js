@@ -1,6 +1,49 @@
 /* ========================================
    script.js - SportHub Arena
    ======================================== */
+   /*TAMBAHAN SOUND EFFECT*/
+
+const clickSound = new Audio("sound/click.wav");
+const successSound = new Audio("sound/success.wav");
+const errorSound = new Audio("sound/error.wav");
+const deleteSound = new Audio("sound/delete.wav");
+
+clickSound.volume = 0.5;
+successSound.volume = 0.6;
+errorSound.volume = 0.6;
+deleteSound.volume = 0.6;
+
+function playClickSound() {
+    clickSound.currentTime = 0;
+    clickSound.play().catch(() => {});
+}
+
+function playSuccessSound() {
+    successSound.currentTime = 0;
+    successSound.play().catch(() => {});
+}
+
+function playErrorSound() {
+    errorSound.currentTime = 0;
+    errorSound.play().catch(() => {});
+}
+
+function playDeleteSound() {
+    deleteSound.currentTime = 0;
+    deleteSound.play().catch(() => {});
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll("button, .btn, a").forEach(el => {
+
+        el.addEventListener("click", () => {
+            playClickSound();
+        });
+
+    });
+
+});
 
 //Dark Mode
 function toggleDark() {
@@ -138,12 +181,14 @@ function deleteReservation(id) {
     if (!confirm('Hapus data reservasi ini?')) return;
     const reservations = getReservations().filter(function (item) { return item.id !== id; });
     saveReservations(reservations);
+    playDeleteSound();
     renderReservationTable();
 }
 
 function clearAllReservations() {
     if (!confirm('Hapus semua data reservasi?')) return;
     saveReservations([]);
+    playDeleteSound();
     renderReservationTable();
 }
 //helpers untuk login
@@ -553,6 +598,7 @@ window.logout = logout;
             const code = input ? input.value.trim().toUpperCase() : '';
 
             if (!booking.fieldPrice || !booking.timeSlot) {
+                playErrorSound();
                 promoCode = '';
                 discountRate = 0;
                 updateBookingTotal();
@@ -561,6 +607,7 @@ window.logout = logout;
             }
 
             if (!code) {
+                playErrorSound();
                 promoCode = '';
                 discountRate = 0;
                 updateBookingTotal();
@@ -569,6 +616,7 @@ window.logout = logout;
             }
 
             if (!promoList[code]) {
+                playErrorSound();
                 promoCode = '';
                 discountRate = 0;
                 updateBookingTotal();
@@ -576,6 +624,7 @@ window.logout = logout;
                 return;
             }
 
+            playSuccessSound();
             promoCode = code;
             discountRate = promoList[code];
             updateBookingTotal();
@@ -894,6 +943,7 @@ window.logout = logout;
 
             reservations.push(newBooking);
             localStorage.setItem('sporthub_reservations', JSON.stringify(reservations));
+            playSuccessSound();
 
             // Tampilkan success
             document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
@@ -1059,6 +1109,7 @@ window.logout = logout;
 
             if (user) {
                 // Simpan session
+                playSuccessSound();
                 localStorage.setItem('sporthub_login', JSON.stringify({ name: user.name, email: user.email }));
                 showNotif('login-success');
 
@@ -1067,6 +1118,7 @@ window.logout = logout;
                 }, 1500);
             } else {
                 document.getElementById('login-error-msg').textContent = 'Email atau password salah. Coba lagi.';
+                playErrorSound();
                 showNotif('login-error');
             }
         }
@@ -1109,7 +1161,7 @@ window.logout = logout;
 
             storedUsers.push({ name, phone, email, password });
             localStorage.setItem('sporthub_users', JSON.stringify(storedUsers));
-
+            playSuccessSound();
             showNotif('register-success');
 
             setTimeout(() => {
@@ -1204,7 +1256,7 @@ window.logout = logout;
                 storedUsers[idx].password = newPw;
                 localStorage.setItem('sporthub_users', JSON.stringify(storedUsers));
             }
-
+            playSuccessSound();
             alert('Password berhasil diperbarui! Silakan login dengan password baru.');
             showView('view-login');
         }
