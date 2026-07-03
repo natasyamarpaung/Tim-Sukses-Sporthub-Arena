@@ -734,7 +734,9 @@ body{
 /* Toggle Password */
 .toggle-pw {
     position: absolute;
+    top: 50%;
     right: 14px;
+    transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
@@ -745,6 +747,12 @@ body{
 
 .toggle-pw:hover {
     color: var(--hijau);
+}
+
+/* Sembunyikan ikon mata bawaan browser Edge/IE agar tidak dobel dengan ikon custom */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }
 
 /* Forgot Link */
@@ -836,7 +844,7 @@ body{
 
 .divider::before,
 .divider::after {
-    content: '✓';
+    content: '';
     flex: 1;
     height: 1px;
     background: var(--abu);
@@ -2596,4 +2604,3 @@ body.dark.auth-page .auth-form-container {
         padding: 28px 22px;
     }
 }
-
